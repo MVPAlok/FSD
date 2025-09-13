@@ -304,6 +304,80 @@ section h2 {
     box-shadow: inset 0 0 0 4px rgba(15,15,26,0.6);
 }
 
+/* Enhanced Straight Image Styles */
+.bent-image-container {
+    position: relative;
+    width: clamp(320px, 45vw, 420px);
+    height: clamp(420px, 55vw, 520px);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bent-profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    transform: none;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 25px 50px rgba(0, 229, 255, 0.4),
+        0 0 80px rgba(142, 45, 226, 0.3),
+        0 0 120px rgba(255, 0, 128, 0.2),
+        inset 0 2px 0 rgba(255, 255, 255, 0.15);
+    border: 3px solid rgba(0, 229, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+    filter: brightness(1.1) contrast(1.05) saturate(1.1);
+}
+
+.bent-profile-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(0, 229, 255, 0.05) 0%, 
+        transparent 40%, 
+        transparent 60%, 
+        rgba(142, 45, 226, 0.05) 100%);
+    pointer-events: none;
+    border-radius: 22px;
+}
+
+.bent-image-container:hover .bent-profile-image {
+    transform: scale(1.03);
+    box-shadow: 
+        0 35px 70px rgba(0, 229, 255, 0.5),
+        0 0 100px rgba(142, 45, 226, 0.4),
+        0 0 150px rgba(255, 0, 128, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.2);
+    filter: brightness(1.15) contrast(1.1) saturate(1.15);
+}
+
+.bent-image-container::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    background: linear-gradient(45deg, 
+        var(--neon-blue), 
+        var(--neon-purple), 
+        var(--neon-pink), 
+        var(--neon-blue));
+    border-radius: 30px;
+    z-index: -1;
+    opacity: 0.4;
+    animation: gradient-animation 4s linear infinite;
+    filter: blur(20px);
+}
+
 #about .space-y-8 {
     display: flex;
     flex-direction: column;
@@ -836,6 +910,11 @@ img, video, canvas, svg {
     #projects .grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .bent-image-container {
+        width: clamp(300px, 50vw, 380px);
+        height: clamp(380px, 60vw, 480px);
+    }
 }
 
 @media (min-width: 768px) {
@@ -858,6 +937,15 @@ img, video, canvas, svg {
     
     .card-hover:hover {
         transform: translateY(-12px) scale(1.02);
+    }
+    
+    .bent-image-container {
+        width: clamp(350px, 45vw, 420px);
+        height: clamp(450px, 55vw, 520px);
+    }
+    
+    .bent-profile-image {
+        filter: brightness(1.15) contrast(1.1) saturate(1.15);
     }
 }
 
@@ -916,6 +1004,22 @@ img, video, canvas, svg {
     #experience .card-hover {
         margin-left: 0.25rem;
         padding: 1rem;
+    }
+    
+    .bent-image-container {
+        width: clamp(280px, 85vw, 320px);
+        height: clamp(350px, 95vw, 420px);
+        margin-bottom: 2rem;
+    }
+    
+    .bent-profile-image {
+        border-radius: 20px;
+        filter: brightness(1.2) contrast(1.15) saturate(1.2);
+    }
+    
+    .bent-image-container::after {
+        filter: blur(15px);
+        opacity: 0.3;
     }
 }
     </style>
@@ -984,10 +1088,8 @@ img, video, canvas, svg {
             <h2 class="text-5xl md:text-7xl font-bold text-center mb-20 animated-text">🌟 About Me</h2>
             <div class="grid md:grid-cols-2 gap-16 items-center">
               
-                <div class="profile-image-enhanced">
-                 
-                  <!-- Replace the src below with your actual image filename/path -->
-                  <img src="./mypic.jpeg" alt="Alok Yadav" class="profile-photo">
+                <div class="bent-image-container">
+                  <img src="./vibrant pic of me.jpg" alt="Alok Yadav" class="bent-profile-image">
                 </div>
 
                 <div class="space-y-8">
@@ -1114,7 +1216,7 @@ img, video, canvas, svg {
                         <img src="Screenshot 2025-05-24 155143.png" alt="Sync and Explore Travel Platform" />
                     </div>
                     <h3 class="text-2xl font-semibold mb-4 text-neon-blue flex items-center gap-2">
-                        ✈️ Sync and Explore
+                         Sync and Explore
                     </h3>
                     <p class="text-gray-300 mb-6 leading-relaxed">A cutting-edge travel platform featuring immersive 3D destinations, real-time booking, and AI-powered recommendations for the modern explorer.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
@@ -1123,7 +1225,7 @@ img, video, canvas, svg {
                         <span class="px-4 py-2 bg-gradient-to-r from-neon-pink to-neon-blue bg-opacity-20 text-neon-pink rounded-full text-xs font-semibold">3D</span>
                     </div>
                     <div class="text-right">
-                        <a href="#" class="text-neon-blue hover:text-neon-purple transition-colors duration-300 font-semibold">View Project →</a>
+                        <a href="https://sync-explore.netlify.app/contact" class="text-neon-blue hover:text-neon-purple transition-colors duration-300 font-semibold">View Project →</a>
                     </div>
                 </div>
                 
@@ -1132,7 +1234,7 @@ img, video, canvas, svg {
                         <img src="liquid.png" alt="Liquid Glass · Analysis Hub"/>
                     </div>
                     <h3 class="text-2xl font-semibold mb-4 text-neon-purple flex items-center gap-2">
-                        🧊 Liquid Glass · Analysis Hub
+                         Liquid Glass · Analysis Hub
                     </h3>
                     <p class="text-gray-300 mb-6 leading-relaxed"> Interactive 3D product showcase with a liquid-glass aesthetic — blending Spline, Framer, and custom HTML/CSS to create fluid, immersive user experiences.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
@@ -1150,7 +1252,7 @@ img, video, canvas, svg {
                         <img src="thermo dashboard@2-1536x735.jpg" alt="3D Thermostat Dashboard" />
                     </div>
                     <h3 class="text-2xl font-semibold mb-4 text-neon-pink flex items-center gap-2">
-                        🌡️ 3D Thermostat Dashboard
+                         3D Thermostat Dashboard
                     </h3>
                     <p class="text-gray-300 mb-6 leading-relaxed">An immersive thermostat control system built in Spline — seamlessly blending 3D UI elements with a real-life room environment. Smooth animations, dynamic transitions, and a user-friendly interface bring everyday controls to life.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
@@ -1168,7 +1270,7 @@ img, video, canvas, svg {
         <img src="spotify@1-1536x864.png" alt="Spotify 3D Intro Animation" />
     </div>
     <h3 class="text-2xl font-semibold mb-4 text-neon-green flex items-center gap-2">
-        🎵 Spotify-Inspired 3D Intro Animation
+         Spotify-Inspired 3D Intro Animation
     </h3>
     <p class="text-gray-300 mb-6 leading-relaxed">
         A bold and fluid Spotify-themed intro built in Spline — visuals move with the rhythm of music, blending glowing gradients, circular pulses, and fluid motion. Designed as a mini-performance, the intro captures Spotify’s global energy and youth-driven identity.
@@ -1189,7 +1291,7 @@ img, video, canvas, svg {
         <img src="MVUI.png" alt="MV UI – Next-Gen Framer Website" />
     </div>
     <h3 class="text-2xl font-semibold mb-4 text-neon-blue flex items-center gap-2">
-        🖥️ MV UI – A Next-Gen Interface Experience
+         MV UI – A Next-Gen Interface Experience
     </h3>
     <p class="text-gray-300 mb-6 leading-relaxed">
         “MV UI” is my first Framer project — a bold experiment in dark minimalism. 
@@ -1211,7 +1313,7 @@ img, video, canvas, svg {
         <img src="missile@1-1536x864.png" alt="BrahMos – Supersonic Cruise Missile 3D Model" />
     </div>
     <h3 class="text-2xl font-semibold mb-4 text-neon-blue flex items-center gap-2">
-        🚀 BrahMos – Supersonic Power in 3D
+         BrahMos – Supersonic Power in 3D
     </h3>
     <p class="text-gray-300 mb-6 leading-relaxed">
         A 3D recreation of the world’s fastest supersonic cruise missile — BrahMos.  
@@ -1230,23 +1332,78 @@ img, video, canvas, svg {
 </div>
 
 
-                <div class="card-hover glass-morphism p-8 rounded-2xl">
-                    <div class="project-visual">
-                        <img src="./project-images/interactive-portfolio.jpg" alt="Interactive Portfolio Website" />
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4 text-neon-pink flex items-center gap-2">
-                        💡 Interactive Portfolio
-                    </h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">This very website! A showcase of modern web design featuring glassmorphism, particle effects, and immersive user interactions.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-4 py-2 bg-gradient-to-r from-neon-pink to-neon-blue bg-opacity-20 text-neon-pink rounded-full text-xs font-semibold">HTML5</span>
-                        <span class="px-4 py-2 bg-gradient-to-r from-neon-blue to-neon-purple bg-opacity-20 text-neon-blue rounded-full text-xs font-semibold">CSS3</span>
-                        <span class="px-4 py-2 bg-gradient-to-r from-neon-purple to-neon-pink bg-opacity-20 text-neon-purple rounded-full text-xs font-semibold">Responsive</span>
-                    </div>
-                    <div class="text-right">
-                        <a href="#" class="text-neon-pink hover:text-neon-blue transition-colors duration-300 font-semibold">You're Here! 🎉</a>
-                    </div>
-                </div>
+<div class="card-hover glass-morphism p-8 rounded-2xl">
+    <div class="project-visual">
+        <img src="hostel@1-1536x864-Picsart-AiImageEnhancer.png" alt="Modern Hostel Building – 3D Architecture Model" />
+    </div>
+    <h3 class="text-2xl font-semibold mb-4 text-neon-blue flex items-center gap-2">
+         Modern Hostel Building – 3D Architecture in Spline
+    </h3>
+    <p class="text-gray-300 mb-6 leading-relaxed">
+        A 3D reconstruction of a modern hostel building designed entirely in Spline.  
+        Featuring modular floors, realistic balconies, staircases, and ambient lighting, this project demonstrates precision architecture built for interactive walkthroughs and digital twins.
+    </p>
+    <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-4 py-2 bg-gradient-to-r from-neon-blue to-neon-purple bg-opacity-20 text-neon-blue rounded-full text-xs font-semibold">Architecture</span>
+        <span class="px-4 py-2 bg-gradient-to-r from-neon-purple to-neon-pink bg-opacity-20 text-neon-purple rounded-full text-xs font-semibold">Spline</span>
+        <span class="px-4 py-2 bg-gradient-to-r from-neon-pink to-neon-blue bg-opacity-20 text-neon-pink rounded-full text-xs font-semibold">Interactive Design</span>
+    </div>
+    <div class="text-right">
+        <a href="https://contra.com/p/6Y6QlPRX-modern-hostel-building-3-d-model" target="_blank" class="text-neon-blue hover:text-neon-purple transition-colors duration-300 font-semibold">
+            View Project →
+        </a>
+    </div>
+</div>
+
+
+<div class="card-hover glass-morphism p-8 rounded-2xl">
+    <div class="project-visual">
+        <img src="syncandExplore@1-1536x864.png" alt="Sync and Explore – Logo Design & Motion Video" />
+    </div>
+    <h3 class="text-2xl font-semibold mb-4 text-neon-blue flex items-center gap-2">
+         Sync and Explore — Logo Design & Motion Video
+    </h3>
+    <p class="text-gray-300 mb-6 leading-relaxed">
+        A futuristic 3D logo and animated reveal for <strong>Sync and Explore</strong>, an AI-powered travel automation platform.  
+        Designed in Spline and animated with VEO 3, the project blends global connectivity, smooth transitions, and cinematic visuals to express innovation in travel-tech.
+    </p>
+    <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-4 py-2 bg-gradient-to-r from-neon-blue to-neon-purple bg-opacity-20 text-neon-blue rounded-full text-xs font-semibold">3D Logo</span>
+        <span class="px-4 py-2 bg-gradient-to-r from-neon-purple to-neon-pink bg-opacity-20 text-neon-purple rounded-full text-xs font-semibold">Motion Design</span>
+        <span class="px-4 py-2 bg-gradient-to-r from-neon-pink to-neon-blue bg-opacity-20 text-neon-pink rounded-full text-xs font-semibold">Spline + VEO 3</span>
+    </div>
+    <div class="text-right">
+        <a href="https://contra.com/p/LMeFQmmO-sync-and-explore-logo-design-and-motion-video" target="_blank" class="text-neon-blue hover:text-neon-purple transition-colors duration-300 font-semibold">
+            View Project →
+        </a>
+    </div>
+</div>
+
+<div class="card-hover glass-morphism p-8 rounded-2xl">
+    <div class="project-visual">
+        <img src="thumbnail.png" alt="Genero’25 – Visual Experience Branding" />
+    </div>
+    <h3 class="text-2xl font-semibold mb-4 text-neon-blue flex items-center gap-2">
+         Genero’25 Visual Experience – Branding Through Motion & 3D Design
+    </h3>
+    <p class="text-gray-300 mb-6 leading-relaxed">
+        A bold, immersive identity for <strong>Genero’25</strong>, featuring the iconic golden hand emblem crafted in Spline.  
+This project blends cinematic 3D modeling, motion-integrated typography, and audio-visual synergy to create a festival identity that resonates with unity and creative ambition.
+
+    </p>
+    <div class="flex flex-wrap gap-2 mb-4">
+        <span class="px-4 py-2 bg-gradient-to-r from-neon-blue to-neon-purple bg-opacity-20 text-neon-blue rounded-full text-xs font-semibold">3D Branding</span>
+        <span class="px-4 py-2 bg-gradient-to-r from-neon-purple to-neon-pink bg-opacity-20 text-neon-purple rounded-full text-xs font-semibold">Motion Graphics</span>
+        <span class="px-4 py-2 bg-gradient-to-r from-neon-pink to-neon-blue bg-opacity-20 text-neon-pink rounded-full text-xs font-semibold">Spline</span>
+    </div>
+    <div class="text-right">
+        <a href="https://contra.com/p/3LLXOkZQ-genero25-immersive-logo-and-motion-design" target="_blank" class="text-neon-blue hover:text-neon-purple transition-colors duration-300 font-semibold">
+            View Project →
+        </a>
+    </div>
+</div>
+
+                
             </div>
         </div>
     </section>
