@@ -12,6 +12,9 @@
     <style type="text/tailwindcss">
        /* Complete Responsive CSS */
 
+
+       /* Complete Responsive CSS - Fixed Viewport Issues */
+
 :root {
     --dark-bg: #0f0f1a;
     --neon-blue: #00e5ff;
@@ -22,8 +25,17 @@
     --glass-bg: rgba(255, 255, 255, 0.05);
 }
 
-* {
+/* Complete CSS Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -31,11 +43,11 @@ body {
     background: var(--dark-bg);
     color: var(--text-light);
     overflow-x: hidden;
-    overflow-y: scroll; /* reserve scrollbar space to avoid layout shift */
-    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    width: 100%;
+    min-width: 320px;
 }
 
 /* Universal Background for all sections */
@@ -79,14 +91,16 @@ body {
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Container Responsive */
+/* Fixed Container System */
 .container {
     width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 1rem;
+    position: relative;
 }
 
-/* Navigation Responsive */
+/* Navigation Fixed */
 header {
     position: fixed;
     top: 0;
@@ -95,15 +109,19 @@ header {
     z-index: 50;
     backdrop-filter: blur(25px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
 }
 
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0;
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 nav .animated-text {
@@ -146,7 +164,7 @@ nav a[href="#projects"] {
     flex-shrink: 0;
 }
 
-/* Hero Section Responsive */
+/* Hero Section Fixed */
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -158,11 +176,14 @@ nav a[href="#projects"] {
         radial-gradient(ellipse 80% 50% at 20% 0%, rgba(142, 45, 226, 0.3) 0%, transparent 70%),
         radial-gradient(ellipse 80% 50% at 80% 0%, rgba(0, 229, 255, 0.2) 0%, transparent 70%),
         radial-gradient(ellipse 100% 80% at 50% 100%, rgba(255, 0, 128, 0.15) 0%, transparent 70%);
+    width: 100%;
+    margin: 0;
 }
 
 .hero-section .space-y-8 {
-    max-width: 100%;
+    max-width: 1200px;
     width: 100%;
+    margin: 0 auto;
 }
 
 .hero-section h1 {
@@ -238,9 +259,11 @@ nav a[href="#projects"] {
     position: relative;
 }
 
-/* Section Responsive */
+/* Section Fixed */
 section {
     padding: clamp(2rem, 8vw, 6rem) 0;
+    width: 100%;
+    margin: 0;
 }
 
 section h2 {
@@ -253,15 +276,13 @@ section h2 {
     padding: 0 1rem;
 }
 
-/* About Section Responsive */
-#about .container {
-    max-width: 1200px;
-}
-
+/* About Section Fixed */
 #about .grid {
     display: grid;
     gap: clamp(2rem, 6vw, 4rem);
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .profile-image-enhanced {
@@ -277,8 +298,8 @@ section h2 {
     margin: 0 auto;
     position: relative;
     animation: pulse-glow 4s ease-in-out infinite;
-    overflow: hidden; /* added: ensure image is clipped to circle */
-    padding: 4px; /* optional: creates subtle inner spacing so ::before glow shows */
+    overflow: hidden;
+    padding: 4px;
 }
 
 .profile-image-enhanced::before {
@@ -300,7 +321,6 @@ section h2 {
     object-fit: cover;
     display: block;
     border-radius: 50%;
-    /* optional subtle inner border to separate image from glow */
     box-shadow: inset 0 0 0 4px rgba(15,15,26,0.6);
 }
 
@@ -418,15 +438,13 @@ section h2 {
     font-weight: 600;
 }
 
-/* Skills Section Responsive */
-#skills .container {
-    max-width: 1400px;
-}
-
+/* Skills Section Fixed */
 #skills .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: clamp(1rem, 3vw, 2rem);
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .skill-icon-3d {
@@ -467,7 +485,7 @@ section h2 {
 #skills .skill-progress {
     width: 100%;
     height: 8px;
-    background: #374151; /* gray-700 */
+    background: #374151;
     border-radius: 9999px;
     overflow: hidden;
 }
@@ -485,15 +503,13 @@ section h2 {
     background-position: 100% 0;
 }
 
-/* Projects Section Responsive */
-#projects .container {
-    max-width: 1400px;
-}
-
+/* Projects Section Fixed */
 #projects .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: clamp(1.5rem, 4vw, 2.5rem);
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .project-visual {
@@ -575,15 +591,14 @@ section h2 {
     font-weight: 600;
 }
 
-/* Experience Section Responsive */
-#experience .container {
-    max-width: 1000px;
-}
-
+/* Experience Section Fixed */
 .experience-timeline {
     position: relative;
     padding-left: clamp(1.5rem, 4vw, 2rem);
     margin-bottom: clamp(2rem, 5vw, 3rem);
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .experience-timeline::before {
@@ -634,14 +649,12 @@ section h2 {
     line-height: 1.6;
 }
 
-/* Contact Section Responsive */
-#contact .container {
-    max-width: 1200px;
-}
-
+/* Contact Section Fixed */
 #contact .grid {
     display: grid;
     gap: clamp(2rem, 6vw, 4rem);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 #contact h3 {
@@ -733,10 +746,16 @@ section h2 {
     box-shadow: 0 0 30px var(--neon-blue);
 }
 
-/* Footer Responsive */
+/* Footer Fixed */
 footer {
     padding: clamp(2rem, 6vw, 3rem) 0;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+}
+
+footer .container {
+    text-align: center;
+    max-width: 1200px;
 }
 
 footer .text-4xl {
@@ -763,7 +782,9 @@ footer .text-sm {
 .section-divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-purple), var(--neon-pink), transparent);
-    margin: clamp(2rem, 6vw, 4rem) 0;
+    margin: clamp(2rem, 6vw, 4rem) auto;
+    max-width: 1200px;
+    width: 90%;
 }
 
 /* Particles */
@@ -887,6 +908,58 @@ img, video, canvas, svg {
     nav .animated-text {
         letter-spacing: -0.03em;
     }
+    
+    .hero-section {
+        padding: 5rem 1rem 2rem;
+    }
+    
+    section {
+        padding: 2rem 0;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    #about .grid.grid-cols-2 {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    #skills .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    #projects .grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .experience-timeline {
+        padding-left: 1rem;
+    }
+    
+    #experience .card-hover {
+        margin-left: 0.25rem;
+        padding: 1rem;
+    }
+    
+    .bent-image-container {
+        width: clamp(280px, 85vw, 320px);
+        height: clamp(350px, 95vw, 420px);
+        margin-bottom: 2rem;
+    }
+    
+    .bent-profile-image {
+        border-radius: 20px;
+        filter: brightness(1.2) contrast(1.15) saturate(1.2);
+    }
+    
+    .bent-image-container::after {
+        filter: blur(15px);
+        opacity: 0.3;
+    }
 }
 
 /* Responsive Breakpoints */
@@ -951,7 +1024,7 @@ img, video, canvas, svg {
 
 @media (min-width: 1024px) {
     .container {
-        padding: 0 3rem;
+        padding: 0 2rem;
     }
     
     #projects .grid {
@@ -959,70 +1032,20 @@ img, video, canvas, svg {
     }
     
     nav {
-        padding: 1rem 3rem;
+        padding: 1rem 2rem;
     }
 }
 
 @media (min-width: 1280px) {
     .container {
-        padding: 0 4rem;
+        padding: 0 3rem;
+    }
+    
+    nav {
+        padding: 1rem 3rem;
     }
 }
-
-@media (max-width: 480px) {
-    .hero-section {
-        padding: 5rem 0.5rem 2rem;
-    }
-    
-    section {
-        padding: 2rem 0;
-    }
-    
-    .container {
-        padding: 0 0.5rem;
-    }
-    
-    #about .grid.grid-cols-2 {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-    
-    #skills .grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    #projects .grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .experience-timeline {
-        padding-left: 1rem;
-    }
-    
-    #experience .card-hover {
-        margin-left: 0.25rem;
-        padding: 1rem;
-    }
-    
-    .bent-image-container {
-        width: clamp(280px, 85vw, 320px);
-        height: clamp(350px, 95vw, 420px);
-        margin-bottom: 2rem;
-    }
-    
-    .bent-profile-image {
-        border-radius: 20px;
-        filter: brightness(1.2) contrast(1.15) saturate(1.2);
-    }
-    
-    .bent-image-container::after {
-        filter: blur(15px);
-        opacity: 0.3;
-    }
-}
-    </style>
+</style>
 </head>
 <body>
     <!-- Floating Particles Background -->
@@ -1089,7 +1112,7 @@ img, video, canvas, svg {
             <div class="grid md:grid-cols-2 gap-16 items-center">
               
                 <div class="bent-image-container">
-                  <img src="./vibrant pic of me.jpg" alt="Alok Yadav" class="bent-profile-image">
+                  <img src="vibrant pic of me croped.jpg" alt="Alok Yadav" class="bent-profile-image">
                 </div>
 
                 <div class="space-y-8">
@@ -1194,7 +1217,7 @@ img, video, canvas, svg {
                 </div>
                 <div class="card-hover glass-morphism p-8 rounded-2xl text-center">
                     <div class="skill-icon-3d" style="animation-delay: 3.5s;">📈</div>
-                    <h3 class="text-xl font-semibold mb-3 text-neon-purple">Data Viz</h3>
+                    <h3 class="text-xl font-semibold mb-3 text-neon-purple">C++</h3>
                     <p class="text-sm text-gray-400 mb-4">Story Teller</p>
                     <div class="skill-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Data Visualization skill" data-progress="82">
                         <div class="skill-progress-bar"></div>
